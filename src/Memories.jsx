@@ -2,10 +2,10 @@ import {useEffect,useState,useRef} from 'react'
 import {Download,Trash2,Heart} from 'lucide-react'
 import {supabase} from './lib/supabase'
 
-const AUDIO_KEY='engagementAudioTime'
+const AUDIO_KEY='weddingAudioTime'
 
 async function guestSession(){if(!supabase)return null;const{data:{session}}=await supabase.auth.getSession();if(session)return session;const{data,error}=await supabase.auth.signInAnonymously();return error?null:data.session}
-async function downloadBlob(blob){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='Abanoub-Engy-Engagement.jpg';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+async function downloadBlob(blob){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='Ahmed-Said-Wedding.jpg';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)}
 
 export default function Memories(){
  const[memories,setMemories]=useState([]),[session,setSession]=useState(null),audioRef=useRef(null)
