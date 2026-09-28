@@ -22,7 +22,7 @@ jobs:
         run: |
           rm -rf /tmp/engagement-base
           git clone --depth 1 https://github.com/abanoubemad261-eng/Engagement.git /tmp/engagement-base
-          rsync -a --delete             --exclude='.git/'             --exclude='.github/workflows/sync-base.yml'             /tmp/engagement-base/ ./
+          rsync -a --delete --exclude='.git/' --exclude='.github/workflows/' /tmp/engagement-base/ ./
 
       - name: Commit synced base
         run: |
