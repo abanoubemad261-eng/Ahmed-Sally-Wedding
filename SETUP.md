@@ -1,4 +1,4 @@
-# Abanoub & Engy Engagement — V2
+# Ahmed & Said Wedding — V2
 
 ## Public invitation link
 Use the Vercel project domain root:
@@ -19,7 +19,7 @@ Create a free Supabase project. Open **SQL Editor** and run the complete file `s
 
 Then go to **Authentication → Providers / Anonymous Sign-Ins** and enable **Anonymous Sign-Ins**. Guest camera users use anonymous accounts so each guest can delete only their own Memory Wall photo. Supabase documents that anonymous users use the authenticated database role and expose an `is_anonymous` JWT claim, so the SQL policies explicitly distinguish guests from the permanent admin account.
 
-Create one permanent Auth user for Abanoub/Engy under **Authentication → Users**. Use its email/password only at `/admin`.
+Create one permanent Auth user for Ahmed/Said under **Authentication → Users**. Use its email/password only at `/admin`.
 
 ## 2. Vercel environment variables
 In **Vercel → Project → Settings → Environment Variables**, add:
@@ -32,7 +32,7 @@ Do not put a Supabase service-role/secret key in Vercel frontend variables.
 Redeploy after saving.
 
 ## 3. Upload the exact circular frame
-Open `/admin` on the phone, log in, go to **Camera Frame**, and upload the exact frame image supplied by Abanoub & Engy. The website then uses that same frame for every guest.
+Open `/admin` on the phone, log in, go to **Camera Frame**, and upload the exact frame image supplied by Ahmed & Said. The website then uses that same frame for every guest.
 
 ## 4. Story photos
 From `/admin` on the phone, open **Our Story → Add photos from mobile Gallery**. You can add 4–5 photos or more and remove any photo later. All visitors see the same Story gallery.
