@@ -1,6 +1,6 @@
-# Engagement Invitation — V1
+# Wedding Invitation — V1
 
-A free, original engagement invitation inspired by the elegant flow of modern digital wedding invitations.
+A free, original wedding invitation inspired by the elegant flow of modern digital wedding invitations.
 
 ## Run locally
 
@@ -17,7 +17,7 @@ npm run build
 
 ## First customization targets
 
-- Replace `Abanoub` and `Your Name` in `src/App.jsx`
+- Replace `Ahmed` and `Your Name` in `src/App.jsx`
 - Replace the event date/time
 - Add your photos under `public/images`
 - Connect the real Google Maps location
