@@ -19,3 +19,14 @@
 @keyframes curtainOpenRight{0%{transform:translateX(0)}100%{transform:translateX(100%)}}
 @keyframes homeReveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.hero::before{animation:none;transform:translateX(-100%)}.hero::after{animation:none;transform:translateX(100%)}.hero .hero-copy{animation:none}}
+
+/* Starburst invitation reveal */
+.star-reveal{position:absolute;left:50%;top:50%;width:24px;height:24px;z-index:10;pointer-events:none;transform:translate(-50%,-50%) scale(0);opacity:0;background:radial-gradient(circle,#fff 0 18%,rgba(255,255,255,.98) 19% 30%,rgba(232,214,190,.96) 31% 52%,rgba(255,255,255,.98) 53% 62%,rgba(194,161,126,.9) 63% 100%);clip-path:polygon(50% 0%,61% 36%,85% 15%,64% 40%,100% 50%,64% 60%,85% 85%,61% 64%,50% 100%,39% 64%,15% 85%,36% 60%,0% 50%,36% 40%,15% 15%,39% 36%);filter:drop-shadow(0 0 22px rgba(255,248,235,.9))}
+.opening.revealing .star-reveal{animation:starBurst 1.35s cubic-bezier(.16,.8,.2,1) forwards}
+.opening.revealing .opening-content{animation:openingFade .7s ease forwards}
+.opening.revealing .curtain{animation:openingCurtainFade .9s ease forwards}
+.opening.revealing{pointer-events:none}
+@keyframes starBurst{0%{transform:translate(-50%,-50%) scale(0);opacity:0}12%{opacity:1}45%{transform:translate(-50%,-50%) scale(8);opacity:1}100%{transform:translate(-50%,-50%) scale(80);opacity:1}}
+@keyframes openingFade{to{opacity:0;transform:scale(1.03)}}
+@keyframes openingCurtainFade{to{opacity:0}}
+@media(max-width:600px){.star-reveal{width:20px;height:20px}}
