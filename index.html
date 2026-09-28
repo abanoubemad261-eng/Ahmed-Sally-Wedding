@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f2eb" />
+    <meta name="description" content="Our engagement invitation" />
+    <title>Our Engagement</title>
+    <link rel="stylesheet" href="/src/navigation.css" />
+    <style>
+      #home.hero {
+        background-image: linear-gradient(rgba(247, 242, 235, 0.28), rgba(247, 242, 235, 0.28)), url('/0.jpeg') !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+      }
+      .music-btn { display: none !important; }
+    </style>
+    <script>
+      document.addEventListener('click', function (event) {
+        const button = event.target.closest('button');
+        if (!button || !/\bSave\b/.test(button.textContent || '')) return;
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        if (!isIOS) return;
+        setTimeout(function () {
+          const links = Array.from(document.querySelectorAll('a[download]'));
+          const link = links[links.length - 1];
+          if (link && link.href) window.open(link.href, '_blank', 'noopener,noreferrer');
+        }, 0);
+      }, true);
+
+      // Keep the bottom navigation feedback synced with the section actually
+      // visible during manual scrolling, including the Story section.
+      (function () {
+        const sectionMap = [
+          ['location', 'Location'],
+          ['album', 'Story'],
+          ['camera', 'Camera'],
+          ['rsvp', 'RSVP'],
+          ['wishes', 'Wishes']
+        ];
+        function updateBottomNav() {
+          const nav = document.querySelector('.bottom-nav');
+          if (!nav) return;
+          const point = window.innerHeight * 0.42;
+          let best = null, bestDistance = Infinity;
+          sectionMap.forEach(function ([id, label]) {
+            const section = document.getElementById(id);
+            if (!section) return;
+            const rect = section.getBoundingClientRect();
+            if (rect.bottom <= 70 || rect.top >= window.innerHeight) return;
+            const distance = Math.abs((rect.top + rect.height / 2) - point);
+            if (distance < bestDistance) { bestDistance = distance; best = label; }
+          });
+          if (!best) return;
+          nav.querySelectorAll('button').forEach(function (button) {
+            const label = button.querySelector('span')?.textContent?.trim();
+            button.classList.toggle('active', label === best);
+          });
+        }
+        let ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () { updateBottomNav(); ticking = false; });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', updateBottomNav);
+        const observer = new MutationObserver(updateBottomNav);
+        observer.observe(document.body, { childList: true, subtree: true });
+        setTimeout(updateBottomNav, 500);
+        setTimeout(updateBottomNav, 1500);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
