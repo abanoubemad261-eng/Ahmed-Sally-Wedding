@@ -1,0 +1,37 @@
+name: Sync Engagement Base
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: !contains(github.event.head_commit.message, '[sync-base]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout wedding repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Copy Engagement base
+        run: |
+          rm -rf /tmp/engagement-base
+          git clone --depth 1 https://github.com/abanoubemad261-eng/Engagement.git /tmp/engagement-base
+          rsync -a --delete             --exclude='.git/'             --exclude='.github/workflows/sync-base.yml'             /tmp/engagement-base/ ./
+
+      - name: Commit synced base
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Base is already synchronized."
+            exit 0
+          fi
+          git commit -m "Sync Engagement base [sync-base]"
+          git push origin HEAD:main
